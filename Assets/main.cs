@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class main : MonoBehaviour {
-	// cash earned based on wave number
+	public int cash;
+	public int playerHealth;
+
 	public List<Vector3> markers;
 	public GameObject start;
 	public GameObject enemy1;
@@ -42,7 +44,7 @@ public class main : MonoBehaviour {
 		switch((int)en.x){
 			case 1:
 				e = (GameObject)Instantiate (enemy1, start.transform.position, Quaternion.identity);
-				e.name = "enemy";
+				e.name = "enemy" + currentEnemy.ToString();
 				e.tag = "enemy";
 				e.GetComponent<enemy> ().speed = en.y;
 				e.GetComponent<enemy> ().health = en.z;
