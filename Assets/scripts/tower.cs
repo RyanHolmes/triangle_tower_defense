@@ -48,7 +48,8 @@ public class tower : MonoBehaviour {
 
 	void OnMouseDown(){
 		//upgrade and sell
-//		GameObject s = (GameObject)Instantiate(sell, new Vector3(transform.position.x - 0.4f, transform.position.y + 0.4f, -0.4f), Quaternion.identity);
+		Debug.Log("CLICK TOWER");
+//		Instantiate(sell, new Vector3(transform.position.x - 0.4f, transform.position.y + 0.4f, -0.4f), Quaternion.identity);
 //		GameObject u = (GameObject)Instantiate(upgrade, transform.position, Quaternion.identity);
 	}
 //

@@ -45,7 +45,7 @@ public class main : MonoBehaviour {
 		GameObject e;
 		switch((int)en.x){
 			case 1:
-				e = (GameObject)Instantiate (enemy1, start.transform.position, Quaternion.identity);
+			e = (GameObject)Instantiate (enemy1, new Vector3(start.transform.position.x, start.transform.position.y, -0.3f), Quaternion.identity);
 				e.name = "enemy" + currentEnemy.ToString();
 				e.tag = "enemy";
 				e.GetComponent<enemy> ().speed = en.y;

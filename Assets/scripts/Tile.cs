@@ -22,6 +22,7 @@ public class Tile : MonoBehaviour {
 
 	void OnMouseDown(){
 		//place current tile, check if tower exists, reset current tower and bought
+		Debug.Log("CLICK TILE");
 		if (Camera.main.GetComponent<main> ().bought == true && isUsed == false) {
 			if(Camera.main.GetComponent<main> ().currentTower == "slow"){
 				this.transform.localScale = new Vector3 (0.8f, 0.8f, 0.8f);
