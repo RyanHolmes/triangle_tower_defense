@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class main : MonoBehaviour {
 	public int cash;
 	public int playerHealth;
+	public string currentTower;
+	public bool bought = false;
 
 	public List<Vector3> markers;
 	public GameObject start;

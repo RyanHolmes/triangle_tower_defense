@@ -4,21 +4,18 @@ using System.Collections.Generic;
 
 public class tower : MonoBehaviour {
 
+	public string type;
+	public float damage;
 	public float range;
 	public float cost;
-	public float findRate = 1f;
+	public float fireRate = 1f;
 	public GameObject bullet;
 	private GameObject target = null;
 
 	// Use this for initialization
 	void Start () {
 		range = 3f;
-		InvokeRepeating ("UpdateTarget", 0f, findRate);
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
+		InvokeRepeating ("UpdateTarget", 0f, fireRate);
 	}
 
 	void UpdateTarget(){
@@ -29,9 +26,6 @@ public class tower : MonoBehaviour {
 				shortestDistance = Vector3.Distance (transform.position, enemies [i].transform.position);
 				target = enemies [i];
 			} 
-//			else {
-//				target = null;
-//			}
 		}
 		if(target != null && Vector3.Distance(transform.position, target.transform.position) < range){
 			shoot (target);
@@ -46,6 +40,8 @@ public class tower : MonoBehaviour {
 	void shoot(GameObject t){
 		GameObject b = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
 		Vector3 dir = t.transform.position - transform.position;
-		b.GetComponent<Rigidbody> ().AddForce (dir * 1000f);
+		b.GetComponent<Rigidbody2D> ().AddForce (dir.normalized * 1000f);
+		b.tag = "bullet";
+		b.GetComponent<bullet> ().damage = damage;
 	}
 }

@@ -20,7 +20,7 @@ public class enemy : MonoBehaviour {
 		moveEnemy (dir);
 	}
 
-	public void moveEnemy(Vector3 dir){
+	void moveEnemy(Vector3 dir){
 		if (!(currentTarget < markers.Count - 1)) {
 			Destroy (this.gameObject);
 			return;
@@ -31,4 +31,9 @@ public class enemy : MonoBehaviour {
 			currentTarget += 1;
 		}
 	}
+
+	void OnCollisionEnter(Collider c){
+		
+	}
+
 }
