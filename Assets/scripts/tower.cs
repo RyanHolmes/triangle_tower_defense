@@ -8,13 +8,12 @@ public class tower : MonoBehaviour {
 	public float damage;
 	public float range;
 	public float cost;
-	public float fireRate = 1f;
+	public float fireRate;
 	public GameObject bullet;
 	private GameObject target = null;
 
 	// Use this for initialization
 	void Start () {
-		range = 3f;
 		InvokeRepeating ("UpdateTarget", 0f, fireRate);
 	}
 
@@ -43,5 +42,13 @@ public class tower : MonoBehaviour {
 		b.GetComponent<Rigidbody2D> ().AddForce (dir.normalized * 1000f);
 		b.tag = "bullet";
 		b.GetComponent<bullet> ().damage = damage;
+	}
+
+	void OnMouseOver(){
+		//upgrade and sell
+	}
+
+	void OnMouseExit(){
+		// destroy upgrade and sell
 	}
 }

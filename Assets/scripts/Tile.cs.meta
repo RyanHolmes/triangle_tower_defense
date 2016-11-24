@@ -1,11 +1,13 @@
 fileFormatVersion: 2
 guid: dae7b054b7a1445d19a3937531226802
-timeCreated: 1479953112
+timeCreated: 1479998103
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - tower: {fileID: 1000011378576228, guid: 26e7e1be7207e45129a138962e4feb87, type: 2}
+  - tower2: {fileID: 1000011329641756, guid: edbe67c410aa440ffb34f7e6d5299610, type: 2}
+  - tower3: {fileID: 1000012519343536, guid: 5d749b01ff4f14b819b1b2cc9a027a0f, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
