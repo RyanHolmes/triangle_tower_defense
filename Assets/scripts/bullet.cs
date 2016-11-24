@@ -10,7 +10,7 @@ public class bullet : MonoBehaviour {
 		//destroy
 	}
 
-	void OnCollsionEnter(Collider c){
-		//Destroy
-	}
+//	void OnCollsionEnter(Collider c){
+//		//Destroy
+//	}
 }

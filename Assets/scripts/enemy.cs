@@ -32,8 +32,8 @@ public class enemy : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter(Collider c){
-		
-	}
+//	void OnCollisionEnter(Collider c){
+//		
+//	}
 
 }

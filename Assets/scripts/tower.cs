@@ -4,6 +4,8 @@ using System.Collections.Generic;
 
 public class tower : MonoBehaviour {
 
+	public GameObject sell;
+	public GameObject upgrade;
 	public string type;
 	public float damage;
 	public float range;
@@ -44,11 +46,13 @@ public class tower : MonoBehaviour {
 		b.GetComponent<bullet> ().damage = damage;
 	}
 
-	void OnMouseOver(){
+	void OnMouseDown(){
 		//upgrade and sell
+//		GameObject s = (GameObject)Instantiate(sell, new Vector3(transform.position.x - 0.4f, transform.position.y + 0.4f, -0.4f), Quaternion.identity);
+//		GameObject u = (GameObject)Instantiate(upgrade, transform.position, Quaternion.identity);
 	}
-
-	void OnMouseExit(){
-		// destroy upgrade and sell
-	}
+//
+//	void OnMouseExit(){
+//		// destroy upgrade and sell
+//	}
 }
