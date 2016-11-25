@@ -6,9 +6,9 @@ public class sell : MonoBehaviour {
 	public GameObject tower;
 
 	void OnMouseDown(){
-		tower.GetComponent<tower> ().r.SetActive (false);
-		GameObject.FindGameObjectWithTag ("cancel").GetComponent<cancel>().hideButtons();
+		Destroy(tower.GetComponent<tower> ().r.gameObject);
 		Destroy (tower.gameObject);
+		GameObject.FindGameObjectWithTag ("cancel").GetComponent<cancel>().hideButtons();
 	}
 
 	void OnMouseOver(){

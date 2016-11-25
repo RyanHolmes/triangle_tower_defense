@@ -4,9 +4,6 @@ using System.Collections.Generic;
 
 public class tower : MonoBehaviour {
 
-	public GameObject sell;
-	public GameObject upgrade;
-	public GameObject cancel;
 	public GameObject range_prefab;
 	public GameObject r;
 
@@ -57,7 +54,6 @@ public class tower : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		//TODO cant make hundreds of buttons
 		//upgrade and sell or cancel
 		GameObject[] ranges = GameObject.FindGameObjectsWithTag("range");
 		if (ranges.Length > 0) {
@@ -69,15 +65,15 @@ public class tower : MonoBehaviour {
 		r.SetActive (true);
 		GameObject s = GameObject.FindGameObjectWithTag("sell");
 		s.transform.position = new Vector3 (transform.position.x, transform.position.y + 0.4f, 0);
-		s.GetComponent<sell> ().tower = this.gameObject;
+		s.gameObject.GetComponent<sell> ().tower = this.gameObject;
 
 		GameObject u = GameObject.FindGameObjectWithTag("upgrade");
 		u.transform.position = new Vector3 (transform.position.x + 0.9f, transform.position.y + 0.4f, 0);
-		u.GetComponent<upgrade> ().tower = this.gameObject;
+		u.gameObject.GetComponent<upgrade> ().tower = this.gameObject;
 
 		GameObject c = GameObject.FindGameObjectWithTag("cancel");
 		c.transform.position = new Vector3(transform.position.x - 0.9f, transform.position.y + 0.36f, 0);
-		c.GetComponent<cancel> ().tower = this.gameObject;
+		c.gameObject.GetComponent<cancel> ().tower = this.gameObject;
 	}
 
 	void OnMouseOver(){
