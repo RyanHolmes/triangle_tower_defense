@@ -36,6 +36,7 @@ public class main : MonoBehaviour {
 		wave1 = new Vector3[] { new Vector3(1, 1, 100), new Vector3(1, 1, 100) };
 //		wave2 = new Vector3[] { new Vector3(1, 4, 100), new Vector3(1, 1, 100) };
 		waves.Add (wave0);
+		waves.Add (wave1);
 
 		//ui
 		GameObject c = (GameObject)Instantiate (cancel, new Vector3(100, -100, 0), Quaternion.identity);
@@ -48,11 +49,11 @@ public class main : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () { 
-		if(currentEnemy >= wave0.Length){
+		if(currentEnemy >= waves[currentWave].Length){
 			return;
 		}
 		if((Time.time - currentTime) >= spawnRate){
-			spawnEnemy(wave0[currentEnemy]);
+			spawnEnemy(waves[currentWave][currentEnemy]);
 			currentTime = Time.time;
 			currentEnemy++;
 		}
@@ -89,6 +90,12 @@ public class main : MonoBehaviour {
 	}
 
 	public void nextWave(){
-		
+		if(currentWave < waves.Count) {
+		currentEnemy = 0;
+		currentWave++;
+		currentTime = Time.time;
+		} else {
+			return;
+		}
 	}
 }
