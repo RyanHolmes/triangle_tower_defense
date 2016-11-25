@@ -6,6 +6,7 @@ public class tower : MonoBehaviour {
 
 	public GameObject sell;
 	public GameObject upgrade;
+	public GameObject cancel;
 	public string type;
 	public float damage;
 	public float range;
@@ -47,12 +48,18 @@ public class tower : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		//upgrade and sell
-		Instantiate(sell, new Vector3(transform.position.x - 0.5f, transform.position.y + 0.4f, 0), Quaternion.identity);
-		Instantiate(upgrade, new Vector3(transform.position.x + 0.5f, transform.position.y + 0.4f, 0), Quaternion.identity);
+		//TODO cant make hundreds of buttons
+		//upgrade and sell or cancel
+		GameObject s = GameObject.FindGameObjectWithTag("sell");
+		s.transform.position = new Vector3 (transform.position.x, transform.position.y + 0.4f, 0);
+		s.gameObject.GetComponent<sell> ().tower = this.gameObject;
+
+		GameObject u = GameObject.FindGameObjectWithTag("upgrade");
+		u.transform.position = new Vector3 (transform.position.x + 0.9f, transform.position.y + 0.4f, 0);
+		u.gameObject.GetComponent<upgrade> ().tower = this.gameObject;
+
+		GameObject c = GameObject.FindGameObjectWithTag("cancel");
+		c.transform.position = new Vector3(transform.position.x - 0.9f, transform.position.y + 0.36f, 0);
+		c.gameObject.GetComponent<cancel> ().tower = this.gameObject;
 	}
-//
-//	void OnMouseExit(){
-//		// destroy upgrade and sell
-//	}
 }

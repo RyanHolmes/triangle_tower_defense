@@ -8,6 +8,11 @@ public class main : MonoBehaviour {
 	public string currentTower;
 	public bool bought = false;
 
+	//ui
+	public GameObject cancel;
+	public GameObject sell;
+	public GameObject upgrade;
+
 	public List<Vector3> markers;
 	public GameObject start;
 	public GameObject enemy1;
@@ -26,6 +31,12 @@ public class main : MonoBehaviour {
 		spawnRate = 1f;
 		wave0 = new Vector3[] { new Vector3(1, 4, 100), new Vector3(1, 1, 100) };
 		waves.Add (wave0);
+		GameObject c = (GameObject)Instantiate (cancel, new Vector3(100, -100, 0), Quaternion.identity);
+		c.tag = "cancel";
+		GameObject s = (GameObject)Instantiate (sell, new Vector3(100, -100, 0), Quaternion.identity);
+		s.tag = "sell";
+		GameObject u = (GameObject)Instantiate (upgrade, new Vector3(100, -100, 0), Quaternion.identity);
+		u.tag = "upgrade";
 	}
 	
 	// Update is called once per frame

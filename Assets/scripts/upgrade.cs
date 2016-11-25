@@ -3,6 +3,8 @@ using System.Collections;
 
 public class upgrade : MonoBehaviour {
 
+	public GameObject tower;
+
 	void OnMouseDown(){
 		Debug.Log ("UPGRADE");
 	}

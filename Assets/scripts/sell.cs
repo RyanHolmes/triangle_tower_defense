@@ -3,6 +3,8 @@ using System.Collections;
 
 public class sell : MonoBehaviour {
 
+	public GameObject tower;
+
 	void OnMouseDown(){
 		Debug.Log ("SELL");
 	}
