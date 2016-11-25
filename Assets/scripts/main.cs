@@ -1,12 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class main : MonoBehaviour {
-	public int cash;
+	public int playerCash;
 	public int playerHealth;
 	public string currentTower;
 	public bool bought = false;
+
+	public Transform standard_button;
+	public Transform slow_button;
+	public Transform fast_button;
 
 	//ui
 	public GameObject cancel;
@@ -35,6 +40,7 @@ public class main : MonoBehaviour {
 		populateMarks ();
 		currentTime = 0f;
 		spawnRate = 1f;
+		playerCash = 100;
 
 		wave0 = new Vector3[] { new Vector3(3, 3.5f, 100), new Vector3(3, 3.5f, 100) };
 		wave1 = new Vector3[] { new Vector3(2, 1.5f, 100), new Vector3(1, 2.5f, 100) };
@@ -48,6 +54,8 @@ public class main : MonoBehaviour {
 		s.tag = "sell";
 		GameObject u = (GameObject)Instantiate (upgrade, new Vector3(100, -100, 0), Quaternion.identity);
 		u.tag = "upgrade";
+
+		setButtonCost ();
 	}
 	
 	// Update is called once per frame
@@ -115,6 +123,19 @@ public class main : MonoBehaviour {
 		currentTime = Time.time;
 		} else {
 			return;
+		}
+	}
+
+	void setButtonCost () {
+		GameObject[] btns = GameObject.FindGameObjectsWithTag ("tower_button");
+		foreach(GameObject b in btns){
+			if (b.name == "tower_standard") {
+				b.GetComponent<buyButton>().cost = 15;
+			} else if (b.name == "tower_slow") {
+				b.GetComponent<buyButton>().cost = 10;
+			} else {
+				b.GetComponent<buyButton>().cost = 80;
+			}
 		}
 	}
 }

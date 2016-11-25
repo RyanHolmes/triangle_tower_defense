@@ -7,6 +7,7 @@ public class sell : MonoBehaviour {
 
 	void OnMouseDown(){
 		Destroy(tower.GetComponent<tower> ().r.gameObject);
+		//TODO: add money to bank
 		Destroy (tower.gameObject);
 		GameObject.FindGameObjectWithTag ("cancel").GetComponent<cancel>().hideButtons();
 	}

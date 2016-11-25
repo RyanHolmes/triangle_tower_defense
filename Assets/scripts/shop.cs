@@ -3,8 +3,10 @@
 public class shop : MonoBehaviour {
 
 	public void buyTower() {
-		Camera.main.GetComponent<main> ().currentTower = "standard";
-		Camera.main.GetComponent<main> ().bought = true;
+		if(Camera.main.GetComponent<main>().playerCash > 0){
+			Camera.main.GetComponent<main> ().currentTower = "standard";
+			Camera.main.GetComponent<main> ().bought = true;
+		}
 	}
 
 	public void buyTower2() {

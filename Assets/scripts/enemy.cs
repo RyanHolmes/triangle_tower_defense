@@ -8,6 +8,7 @@ public class enemy : MonoBehaviour {
 	public int currentTarget = 1;
 	public float speed;
 	public float health;
+	public int[] waveCash = new int[] {10, 20, 30};
 
 	// Use this for initialization
 	void Start () {
@@ -20,7 +21,7 @@ public class enemy : MonoBehaviour {
 		moveEnemy (dir);
 		if (health <= 0) {
 			Destroy (this.gameObject);
-			//TODO: give player money
+			Camera.main.GetComponent<main> ().playerCash += waveCash[Camera.main.GetComponent<main>().currentWave];
 		}
 	}
 

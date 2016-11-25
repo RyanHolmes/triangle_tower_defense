@@ -35,6 +35,7 @@ public class Tile : MonoBehaviour {
 				isUsed = true;
 				Camera.main.GetComponent<main> ().bought = false;
 				Camera.main.GetComponent<main> ().currentTower = null;
+				Camera.main.GetComponent<main> ().playerCash -= 10;
 			}
 			if(Camera.main.GetComponent<main> ().currentTower == "standard"){
 				this.transform.localScale = new Vector3 (0.65f, 0.65f, 0.65f);
@@ -48,6 +49,7 @@ public class Tile : MonoBehaviour {
 				isUsed = true;
 				Camera.main.GetComponent<main> ().bought = false;
 				Camera.main.GetComponent<main> ().currentTower = null;
+				Camera.main.GetComponent<main> ().playerCash -= 15;
 			}
 			if(Camera.main.GetComponent<main> ().currentTower == "fast"){
 				this.transform.localScale = new Vector3 (0.65f, 0.65f, 0.65f);
@@ -58,6 +60,7 @@ public class Tile : MonoBehaviour {
 				t.GetComponent<tower> ().fireRate = 0.3f;
 				t.GetComponent<tower> ().damage = 10;
 				t.GetComponent<tower> ().cost = 20;
+				Camera.main.GetComponent<main> ().playerCash -= 80;
 				isUsed = true;
 				Camera.main.GetComponent<main> ().bought = false;
 				Camera.main.GetComponent<main> ().currentTower = null;
