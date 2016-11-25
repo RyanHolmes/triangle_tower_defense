@@ -10,23 +10,22 @@ public class Tile : MonoBehaviour {
 
 	void OnMouseOver(){
 		if(Camera.main.GetComponent<main> ().bought == true){
-			this.transform.localScale = new Vector3 (0.85f, 0.85f, 0.85f);
+			this.transform.localScale = new Vector3 (0.7f, 0.7f, 0.7f);
 		}
 	}
 
 	void OnMouseExit(){
 		if (Camera.main.GetComponent<main> ().bought == true) {
-			this.transform.localScale = new Vector3 (0.8f, 0.8f, 0.8f);
+			this.transform.localScale = new Vector3 (0.65f, 0.65f, 0.65f);
 		}
 	}
 
 	void OnMouseDown(){
 		//place current tile, check if tower exists, reset current tower and bought
-		Debug.Log("CLICK TILE");
 		if (Camera.main.GetComponent<main> ().bought == true && isUsed == false) {
 			if(Camera.main.GetComponent<main> ().currentTower == "slow"){
-				this.transform.localScale = new Vector3 (0.8f, 0.8f, 0.8f);
-				GameObject t = (GameObject)Instantiate (tower2, new Vector3 (transform.position.x, transform.position.y, -0.2f), Quaternion.identity);
+				this.transform.localScale = new Vector3 (0.65f, 0.65f, 0.65f);
+				GameObject t = (GameObject)Instantiate (tower2, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 				t.tag = "tower";
 				t.GetComponent<tower> ().type = "slow";
 				t.GetComponent<tower> ().cost = 25;
@@ -38,8 +37,8 @@ public class Tile : MonoBehaviour {
 				Camera.main.GetComponent<main> ().currentTower = null;
 			}
 			if(Camera.main.GetComponent<main> ().currentTower == "standard"){
-				this.transform.localScale = new Vector3 (0.8f, 0.8f, 0.8f);
-				GameObject t = (GameObject)Instantiate (tower, new Vector3 (transform.position.x, transform.position.y, -0.2f), Quaternion.identity);
+				this.transform.localScale = new Vector3 (0.65f, 0.65f, 0.65f);
+				GameObject t = (GameObject)Instantiate (tower, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 				t.tag = "tower";
 				t.GetComponent<tower> ().type = "standard";
 				t.GetComponent<tower> ().cost = 25;
@@ -51,8 +50,8 @@ public class Tile : MonoBehaviour {
 				Camera.main.GetComponent<main> ().currentTower = null;
 			}
 			if(Camera.main.GetComponent<main> ().currentTower == "fast"){
-				this.transform.localScale = new Vector3 (0.8f, 0.8f, 0.8f);
-				GameObject t = (GameObject)Instantiate (tower3, new Vector3 (transform.position.x, transform.position.y, -0.2f), Quaternion.identity);
+				this.transform.localScale = new Vector3 (0.65f, 0.65f, 0.65f);
+				GameObject t = (GameObject)Instantiate (tower3, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 				t.tag = "tower";
 				t.GetComponent<tower> ().type = "fast";
 				t.GetComponent<tower> ().cost = 25;
