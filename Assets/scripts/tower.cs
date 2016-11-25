@@ -7,16 +7,20 @@ public class tower : MonoBehaviour {
 	public GameObject sell;
 	public GameObject upgrade;
 	public GameObject cancel;
+
 	public string type;
+	public int level;
 	public float damage;
 	public float range;
 	public float cost;
+	public float value;
 	public float fireRate;
 	public GameObject bullet;
 	private GameObject target = null;
 
 	// Use this for initialization
 	void Start () {
+		level = 1;
 		InvokeRepeating ("UpdateTarget", 0f, fireRate);
 	}
 
@@ -42,7 +46,7 @@ public class tower : MonoBehaviour {
 	void shoot(GameObject t){
 		GameObject b = (GameObject)Instantiate(bullet, transform.position, Quaternion.identity);
 		Vector3 dir = t.transform.position - transform.position;
-		b.GetComponent<Rigidbody2D> ().AddForce (dir.normalized * 1000f);
+		b.GetComponent<Rigidbody2D> ().AddForce (dir.normalized * 2000f);
 		b.tag = "bullet";
 		b.GetComponent<bullet> ().damage = damage;
 	}
@@ -61,5 +65,13 @@ public class tower : MonoBehaviour {
 		GameObject c = GameObject.FindGameObjectWithTag("cancel");
 		c.transform.position = new Vector3(transform.position.x - 0.9f, transform.position.y + 0.36f, 0);
 		c.gameObject.GetComponent<cancel> ().tower = this.gameObject;
+	}
+
+	void OnMouseOver(){
+		transform.localScale = new Vector3 (1.05f, 1.05f, 1.05f);
+	}
+
+	void OnMouseExit(){
+		transform.localScale = new Vector3 (1f, 1f, 1f);
 	}
 }

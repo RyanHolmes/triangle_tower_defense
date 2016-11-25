@@ -28,10 +28,10 @@ public class Tile : MonoBehaviour {
 				GameObject t = (GameObject)Instantiate (tower2, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 				t.tag = "tower";
 				t.GetComponent<tower> ().type = "slow";
-				t.GetComponent<tower> ().cost = 25;
 				t.GetComponent<tower> ().range = 3f;
 				t.GetComponent<tower> ().fireRate = 2f;
 				t.GetComponent<tower> ().damage = 20;
+				t.GetComponent<tower> ().cost = 10;
 				isUsed = true;
 				Camera.main.GetComponent<main> ().bought = false;
 				Camera.main.GetComponent<main> ().currentTower = null;
@@ -41,10 +41,10 @@ public class Tile : MonoBehaviour {
 				GameObject t = (GameObject)Instantiate (tower, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 				t.tag = "tower";
 				t.GetComponent<tower> ().type = "standard";
-				t.GetComponent<tower> ().cost = 25;
-				t.GetComponent<tower> ().range = 3f;
+				t.GetComponent<tower> ().range = 2.5f;
 				t.GetComponent<tower> ().fireRate = 1f;
 				t.GetComponent<tower> ().damage = 5;
+				t.GetComponent<tower> ().cost = 15;
 				isUsed = true;
 				Camera.main.GetComponent<main> ().bought = false;
 				Camera.main.GetComponent<main> ().currentTower = null;
@@ -54,10 +54,10 @@ public class Tile : MonoBehaviour {
 				GameObject t = (GameObject)Instantiate (tower3, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
 				t.tag = "tower";
 				t.GetComponent<tower> ().type = "fast";
-				t.GetComponent<tower> ().cost = 25;
-				t.GetComponent<tower> ().range = 3f;
+				t.GetComponent<tower> ().range = 2f;
 				t.GetComponent<tower> ().fireRate = 0.3f;
 				t.GetComponent<tower> ().damage = 1;
+				t.GetComponent<tower> ().cost = 20;
 				isUsed = true;
 				Camera.main.GetComponent<main> ().bought = false;
 				Camera.main.GetComponent<main> ().currentTower = null;

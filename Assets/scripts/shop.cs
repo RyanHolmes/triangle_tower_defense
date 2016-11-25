@@ -17,4 +17,8 @@ public class shop : MonoBehaviour {
 		Camera.main.GetComponent<main> ().bought = true;
 	}
 
+	public void nextWave(){
+		Camera.main.GetComponent<main> ().nextWave ();
+	}
+
 }

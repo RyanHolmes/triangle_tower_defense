@@ -18,6 +18,8 @@ public class main : MonoBehaviour {
 	public GameObject enemy1;
 	// x = enemy type, y = speed, z = health
 	public Vector3[] wave0;
+	public Vector3[] wave1;
+//	public Vector3[] wave2;
 	public int currentWave = 0;
 	public int currentEnemy = 0;
 	public float spawnRate;
@@ -29,8 +31,13 @@ public class main : MonoBehaviour {
 		populateMarks ();
 		currentTime = 0f;
 		spawnRate = 1f;
-		wave0 = new Vector3[] { new Vector3(1, 4, 100), new Vector3(1, 1, 100) };
+
+		wave0 = new Vector3[] { new Vector3(1, 4, 100), new Vector3(1, 4, 100) };
+		wave1 = new Vector3[] { new Vector3(1, 1, 100), new Vector3(1, 1, 100) };
+//		wave2 = new Vector3[] { new Vector3(1, 4, 100), new Vector3(1, 1, 100) };
 		waves.Add (wave0);
+
+		//ui
 		GameObject c = (GameObject)Instantiate (cancel, new Vector3(100, -100, 0), Quaternion.identity);
 		c.tag = "cancel";
 		GameObject s = (GameObject)Instantiate (sell, new Vector3(100, -100, 0), Quaternion.identity);
@@ -79,5 +86,9 @@ public class main : MonoBehaviour {
 				}
 			}
 		}
+	}
+
+	public void nextWave(){
+		
 	}
 }
