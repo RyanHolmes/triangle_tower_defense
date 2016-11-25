@@ -32,8 +32,10 @@ public class enemy : MonoBehaviour {
 		}
 	}
 
-//	void OnCollisionEnter(Collider c){
-//		
-//	}
+	void OnCollisionEnte2Dr(Collider2D c){
+		if(c.tag == "bullet"){
+			Debug.Log ("HIT");
+		}
+	}
 
 }
