@@ -15,16 +15,20 @@ public class main : MonoBehaviour {
 
 	public List<Vector3> markers;
 	public GameObject start;
+
 	public GameObject enemy1;
+	public GameObject enemy_standard;//1
+	public GameObject enemy_slow;//2
+	public GameObject enemy_fast;//3
+
 	// x = enemy type, y = speed, z = health
+	public List<Vector3[]> waves = new List<Vector3[]>();
 	public Vector3[] wave0;
 	public Vector3[] wave1;
-//	public Vector3[] wave2;
 	public int currentWave = 0;
 	public int currentEnemy = 0;
 	public float spawnRate;
 	public float currentTime;
-	public List<Vector3[]> waves = new List<Vector3[]>();
 
 	// Use this for initialization
 	void Start () {
@@ -32,9 +36,8 @@ public class main : MonoBehaviour {
 		currentTime = 0f;
 		spawnRate = 1f;
 
-		wave0 = new Vector3[] { new Vector3(1, 4, 100), new Vector3(1, 4, 100) };
-		wave1 = new Vector3[] { new Vector3(1, 1, 100), new Vector3(1, 1, 100) };
-//		wave2 = new Vector3[] { new Vector3(1, 4, 100), new Vector3(1, 1, 100) };
+		wave0 = new Vector3[] { new Vector3(3, 3.5f, 100), new Vector3(3, 3.5f, 100) };
+		wave1 = new Vector3[] { new Vector3(2, 1.5f, 100), new Vector3(1, 2.5f, 100) };
 		waves.Add (wave0);
 		waves.Add (wave1);
 
@@ -63,13 +66,29 @@ public class main : MonoBehaviour {
 		// 1 = normal
 		GameObject e;
 		switch((int)en.x){
-			case 1:
-			e = (GameObject)Instantiate (enemy1, new Vector3(start.transform.position.x, start.transform.position.y, 0f), Quaternion.identity);
-				e.name = "enemy" + currentEnemy.ToString();
-				e.tag = "enemy";
-				e.GetComponent<enemy> ().speed = en.y;
-				e.GetComponent<enemy> ().health = en.z;
-				break;
+		case 1://standard
+			e = (GameObject)Instantiate (enemy_standard, start.transform.position, Quaternion.identity);
+			e.name = "enemy" + currentEnemy.ToString();
+			e.tag = "enemy";
+			e.GetComponent<enemy> ().speed = en.y;
+			e.GetComponent<enemy> ().health = en.z;
+			break;
+
+		case 2://slow
+			e = (GameObject)Instantiate (enemy_slow, start.transform.position, Quaternion.identity);
+			e.name = "enemy" + currentEnemy.ToString();
+			e.tag = "enemy";
+			e.GetComponent<enemy> ().speed = en.y;
+			e.GetComponent<enemy> ().health = en.z;
+			break;
+
+		case 3://fast
+			e = (GameObject)Instantiate (enemy_fast, start.transform.position, Quaternion.identity);
+			e.name = "enemy" + currentEnemy.ToString();
+			e.tag = "enemy";
+			e.GetComponent<enemy> ().speed = en.y;
+			e.GetComponent<enemy> ().health = en.z;
+			break;
 		}
 	}
 
