@@ -30,7 +30,7 @@ public class Tile : MonoBehaviour {
 				t.GetComponent<tower> ().type = "slow";
 				t.GetComponent<tower> ().range = 3f;
 				t.GetComponent<tower> ().fireRate = 2f;
-				t.GetComponent<tower> ().damage = 20;
+				t.GetComponent<tower> ().damage = 40;
 				t.GetComponent<tower> ().cost = 10;
 				isUsed = true;
 				Camera.main.GetComponent<main> ().bought = false;
@@ -43,7 +43,7 @@ public class Tile : MonoBehaviour {
 				t.GetComponent<tower> ().type = "standard";
 				t.GetComponent<tower> ().range = 2.5f;
 				t.GetComponent<tower> ().fireRate = 1f;
-				t.GetComponent<tower> ().damage = 5;
+				t.GetComponent<tower> ().damage = 25;
 				t.GetComponent<tower> ().cost = 15;
 				isUsed = true;
 				Camera.main.GetComponent<main> ().bought = false;
@@ -56,7 +56,7 @@ public class Tile : MonoBehaviour {
 				t.GetComponent<tower> ().type = "fast";
 				t.GetComponent<tower> ().range = 2f;
 				t.GetComponent<tower> ().fireRate = 0.3f;
-				t.GetComponent<tower> ().damage = 1;
+				t.GetComponent<tower> ().damage = 10;
 				t.GetComponent<tower> ().cost = 20;
 				isUsed = true;
 				Camera.main.GetComponent<main> ().bought = false;

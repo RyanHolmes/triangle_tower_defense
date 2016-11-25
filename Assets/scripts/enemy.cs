@@ -18,6 +18,10 @@ public class enemy : MonoBehaviour {
 		markers = Camera.main.GetComponent<main> ().markers;
 		Vector3 dir = markers [currentTarget] - markers [currentTarget - 1];
 		moveEnemy (dir);
+		if (health <= 0) {
+			Destroy (this.gameObject);
+			//TODO: give player money
+		}
 	}
 
 	void moveEnemy(Vector3 dir){
@@ -32,9 +36,9 @@ public class enemy : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnte2Dr(Collider2D c){
-		if(c.tag == "bullet"){
-			Debug.Log ("HIT");
+	void OnCollisionEnter2D(Collision2D c){
+		if(c.gameObject.tag == "bullet"){
+			health -= c.gameObject.GetComponent<bullet> ().damage;
 		}
 	}
 

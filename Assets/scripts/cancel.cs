@@ -6,6 +6,7 @@ public class cancel : MonoBehaviour {
 	public GameObject tower;
 
 	void OnMouseDown(){
+		tower.GetComponent<tower> ().r.SetActive (false);
 		hideButtons ();
 	}
 
@@ -26,7 +27,8 @@ public class cancel : MonoBehaviour {
 		u.transform.position = new Vector3 (100, 100, 0);
 		u.gameObject.GetComponent<upgrade> ().tower = null;
 
-		this.transform.position = new Vector3(100, 100, 0);
-		tower = null;
+		GameObject c = GameObject.FindGameObjectWithTag("cancel");
+		c.transform.position = new Vector3 (100, 100, 0);
+		c.gameObject.GetComponent<cancel> ().tower = null;
 	}
 }

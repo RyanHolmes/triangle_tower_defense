@@ -6,6 +6,8 @@ public class upgrade : MonoBehaviour {
 	public GameObject tower;
 
 	void OnMouseDown(){
+		tower.GetComponent<tower> ().r.SetActive (false);
+		GameObject.FindGameObjectWithTag ("cancel").GetComponent<cancel>().hideButtons();
 		Debug.Log ("UPGRADE");
 	}
 

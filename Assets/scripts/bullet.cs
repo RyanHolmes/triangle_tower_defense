@@ -5,7 +5,7 @@ public class bullet : MonoBehaviour {
 
 	public float damage;
 
-//	void OnCollsionEnter2D(Collider2D c){
-	//		//Destroy(this.gameObject);
-//	}
+	void OnCollisionEnter2D(Collision2D c){
+		Destroy(this.gameObject);
+	}
 }

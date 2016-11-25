@@ -7,6 +7,8 @@ public class tower : MonoBehaviour {
 	public GameObject sell;
 	public GameObject upgrade;
 	public GameObject cancel;
+	public GameObject range_prefab;
+	public GameObject r;
 
 	public string type;
 	public int level;
@@ -22,6 +24,9 @@ public class tower : MonoBehaviour {
 	void Start () {
 		level = 1;
 		InvokeRepeating ("UpdateTarget", 0f, fireRate);
+		r = (GameObject)Instantiate (range_prefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+		r.transform.localScale = new Vector3(range, range, 0); 
+		r.SetActive (false);
 	}
 
 	void UpdateTarget(){
@@ -54,17 +59,25 @@ public class tower : MonoBehaviour {
 	void OnMouseDown(){
 		//TODO cant make hundreds of buttons
 		//upgrade and sell or cancel
+		GameObject[] ranges = GameObject.FindGameObjectsWithTag("range");
+		if (ranges.Length > 0) {
+			foreach(GameObject ra in ranges){
+				ra.SetActive (false);
+			}
+		}
+			
+		r.SetActive (true);
 		GameObject s = GameObject.FindGameObjectWithTag("sell");
 		s.transform.position = new Vector3 (transform.position.x, transform.position.y + 0.4f, 0);
-		s.gameObject.GetComponent<sell> ().tower = this.gameObject;
+		s.GetComponent<sell> ().tower = this.gameObject;
 
 		GameObject u = GameObject.FindGameObjectWithTag("upgrade");
 		u.transform.position = new Vector3 (transform.position.x + 0.9f, transform.position.y + 0.4f, 0);
-		u.gameObject.GetComponent<upgrade> ().tower = this.gameObject;
+		u.GetComponent<upgrade> ().tower = this.gameObject;
 
 		GameObject c = GameObject.FindGameObjectWithTag("cancel");
 		c.transform.position = new Vector3(transform.position.x - 0.9f, transform.position.y + 0.36f, 0);
-		c.gameObject.GetComponent<cancel> ().tower = this.gameObject;
+		c.GetComponent<cancel> ().tower = this.gameObject;
 	}
 
 	void OnMouseOver(){
