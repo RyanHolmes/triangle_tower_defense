@@ -5,6 +5,19 @@ public class upgrade : MonoBehaviour {
 
 	public GameObject tower;
 
+	void Update(){
+		if (tower != null) {
+			float costToUpgrade = Camera.main.GetComponent<main> ().upgrades [tower.GetComponent<tower> ().type + (tower.GetComponent<tower> ().level + 1).ToString ()] [0];
+			if (costToUpgrade > Camera.main.GetComponent<main> ().playerCash) {
+				this.enabled = false;
+				this.GetComponent<Renderer> ().material.color = Color.red;
+			} else {
+				this.enabled = true;
+				this.GetComponent<Renderer> ().material.color = Color.white;
+			}
+		}
+	}
+
 	void OnMouseDown(){
 		float costToUpgrade = Camera.main.GetComponent<main>().upgrades[tower.GetComponent<tower>().type + (tower.GetComponent<tower>().level + 1).ToString()][0];
 		if( costToUpgrade <= Camera.main.GetComponent<main>().playerCash){
