@@ -34,6 +34,7 @@ public class main : MonoBehaviour {
 	public int currentEnemy = 0;
 	public float spawnRate;
 	public float currentTime;
+	public Dictionary<string, float[]> upgrades = new Dictionary<string, float[]>();
 
 	// Use this for initialization
 	void Start () {
@@ -56,6 +57,7 @@ public class main : MonoBehaviour {
 		u.tag = "upgrade";
 
 		setButtonCost ();
+		populateUpgrades ();
 	}
 	
 	// Update is called once per frame
@@ -134,8 +136,27 @@ public class main : MonoBehaviour {
 			} else if (b.name == "tower_slow") {
 				b.GetComponent<buyButton>().cost = 10;
 			} else {
-				b.GetComponent<buyButton>().cost = 80;
+				b.GetComponent<buyButton>().cost = 20;
 			}
 		}
+	}
+
+
+	void populateUpgrades (){
+		//tower.type + tower.level
+		//cost, range, damage, speed, value(60%)
+		upgrades["standard1"] = new float[5] { 10, 2.5f, 15, 1, 6 };
+		upgrades["standard2"] = new float[5] { 10, 2.75f, 25, 0.8f, 12 };
+		upgrades["standard3"] = new float[5] { 50, 3, 40, 0.6f, 42 };
+
+		upgrades["slow1"] = new float[5] { 30, 3, 40, 3, 18 };
+		upgrades["slow2"] = new float[5] { 30, 3.5f, 70, 3, 36 };
+		upgrades["slow3"] = new float[5] { 100, 4.5f, 450, 2.5f, 96 };
+
+		upgrades["fast1"] = new float[5] { 15, 2, 5, 0.5f, 9 };
+		upgrades["fast2"] = new float[5] { 20, 2, 12, 0.4f, 21 };
+		upgrades["fast3"] = new float[5] { 75, 2.5f, 36, 0.3f, 66 };
+		//access
+		//string i = upgrades["standard1"][0];
 	}
 }

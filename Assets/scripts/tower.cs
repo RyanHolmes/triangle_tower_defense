@@ -21,9 +21,6 @@ public class tower : MonoBehaviour {
 	void Start () {
 		level = 1;
 		InvokeRepeating ("UpdateTarget", 0f, fireRate);
-		r = (GameObject)Instantiate (range_prefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
-		r.transform.localScale = new Vector3(range, range, 0); 
-		r.SetActive (false);
 	}
 
 	void UpdateTarget(){
@@ -58,11 +55,13 @@ public class tower : MonoBehaviour {
 		GameObject[] ranges = GameObject.FindGameObjectsWithTag("range");
 		if (ranges.Length > 0) {
 			foreach(GameObject ra in ranges){
-				ra.SetActive (false);
+				Destroy(ra.gameObject);
 			}
 		}
-			
-		r.SetActive (true);
+		r = (GameObject)Instantiate (range_prefab, new Vector3 (transform.position.x, transform.position.y, 0), Quaternion.identity);
+		r.transform.localScale = new Vector3(range, range, 0);
+		r.tag = "range";
+
 		GameObject s = GameObject.FindGameObjectWithTag("sell");
 		s.transform.position = new Vector3 (transform.position.x, transform.position.y + 0.4f, 0);
 		s.gameObject.GetComponent<sell> ().tower = this.gameObject;
@@ -82,5 +81,16 @@ public class tower : MonoBehaviour {
 
 	void OnMouseExit(){
 		transform.localScale = new Vector3 (1f, 1f, 1f);
+	}
+
+	public void upgrade(){
+		//TODO check upgrade is available
+		level += 1;
+		Dictionary<string, float[]> upgrades = Camera.main.GetComponent<main> ().upgrades;
+		//cost, range, damage, speed, value
+		range = upgrades[type + level.ToString()][1];
+		damage = upgrades[type + level.ToString()][2];
+		fireRate = upgrades[type + level.ToString()][3];
+		value = upgrades[type + level.ToString()][4];
 	}
 }

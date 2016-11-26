@@ -6,7 +6,7 @@ public class cancel : MonoBehaviour {
 	public GameObject tower;
 
 	void OnMouseDown(){
-		tower.GetComponent<tower> ().r.SetActive (false);
+		Destroy(tower.GetComponent<tower> ().r.gameObject);
 		hideButtons ();
 	}
 
