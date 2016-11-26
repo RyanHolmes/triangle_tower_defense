@@ -21,6 +21,7 @@ public class main : MonoBehaviour {
 
 	public List<Vector3> markers;
 	public GameObject start;
+	public bool gameStart;
 
 	public GameObject enemy1;
 	public GameObject enemy_standard;//1
@@ -31,8 +32,8 @@ public class main : MonoBehaviour {
 	public List<Vector3[]> waves = new List<Vector3[]>();
 	public Vector3[] wave0;
 	public Vector3[] wave1;
-	public int currentWave = 0;
-	public int currentEnemy = 0;
+	public int currentWave;
+	public int currentEnemy;
 	public float spawnRate;
 	public float currentTime;
 	public Dictionary<string, float[]> upgrades = new Dictionary<string, float[]>();
@@ -45,6 +46,9 @@ public class main : MonoBehaviour {
 		playerCash = 100;
 		playerHealth = 20;
 		gameOver = false;
+		gameStart = false;
+		currentWave = -1;
+		currentEnemy = 0;
 
 		wave0 = new Vector3[] { new Vector3(3, 3.5f, 50), new Vector3(3, 3.5f, 50) };
 		wave1 = new Vector3[] { new Vector3(2, 1.5f, 150), new Vector3(1, 2.5f, 100) };
@@ -67,13 +71,17 @@ public class main : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () { 
-		if(currentEnemy >= waves[currentWave].Length && !gameOver){
-			return;
-		}
-		if((Time.time - currentTime) >= spawnRate && !gameOver){
-			spawnEnemy(waves[currentWave][currentEnemy]);
-			currentTime = Time.time;
-			currentEnemy++;
+		if (gameStart) {
+			if (currentEnemy >= waves [currentWave].Length && !gameOver) {
+				return;
+			}
+			if (gameStart) {
+				if ((Time.time - currentTime) >= spawnRate && !gameOver) {
+					spawnEnemy (waves [currentWave] [currentEnemy]);
+					currentTime = Time.time;
+					currentEnemy++;
+				}
+			}
 		}
 	}
 

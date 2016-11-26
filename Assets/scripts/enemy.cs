@@ -8,7 +8,7 @@ public class enemy : MonoBehaviour {
 	public int currentTarget = 1;
 	public float speed;
 	public float health;
-	public int[] waveCash = new int[] {10, 20, 30};
+	public int[] waveCash = new int[] {3, 5, 7};
 	public GameObject healthBar;
 	public GameObject hb;
 	public GameObject anim;

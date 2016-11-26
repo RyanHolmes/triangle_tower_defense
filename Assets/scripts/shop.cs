@@ -20,6 +20,8 @@ public class shop : MonoBehaviour {
 	}
 
 	public void nextWave(){
+		Camera.main.GetComponent<main> ().gameStart = true;
+		Camera.main.GetComponent<main> ().currentTime = Time.time;
 		Camera.main.GetComponent<main> ().nextWave ();
 	}
 
