@@ -42,6 +42,7 @@ public class main : MonoBehaviour {
 		currentTime = 0f;
 		spawnRate = 1f;
 		playerCash = 100;
+		playerHealth = 20;
 
 		wave0 = new Vector3[] { new Vector3(3, 3.5f, 100), new Vector3(3, 3.5f, 100) };
 		wave1 = new Vector3[] { new Vector3(2, 1.5f, 100), new Vector3(1, 2.5f, 100) };

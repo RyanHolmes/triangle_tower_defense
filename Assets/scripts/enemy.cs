@@ -28,6 +28,7 @@ public class enemy : MonoBehaviour {
 	void moveEnemy(Vector3 dir){
 		if (!(currentTarget < markers.Count - 1)) {
 			Destroy (this.gameObject);
+			Camera.main.GetComponent<main> ().playerHealth -= 1;
 			return;
 		}
 		if (Vector3.Distance (transform.position, markers [currentTarget]) >= 0.15f) {
