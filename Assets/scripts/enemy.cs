@@ -9,9 +9,13 @@ public class enemy : MonoBehaviour {
 	public float speed;
 	public float health;
 	public int[] waveCash = new int[] {10, 20, 30};
+	public GameObject healthBar;
+	public GameObject hb;
 
 	// Use this for initialization
 	void Start () {
+		hb = (GameObject)Instantiate (healthBar, new Vector3 (transform.position.x, transform.position.y - 0.55f, 0), Quaternion.identity);
+		hb.transform.parent = this.transform;
 	}
 	
 	// Update is called once per frame
