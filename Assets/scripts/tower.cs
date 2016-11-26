@@ -6,6 +6,10 @@ public class tower : MonoBehaviour {
 
 	public GameObject range_prefab;
 	public GameObject r;
+	public GameObject lvl2;
+	public GameObject lvl3;
+	public GameObject b2;
+	public GameObject b3;
 
 	public string type;
 	public int level;
@@ -92,5 +96,11 @@ public class tower : MonoBehaviour {
 		damage = upgrades[type + level.ToString()][2];
 		fireRate = upgrades[type + level.ToString()][3];
 		value = upgrades[type + level.ToString()][4];
+		if (level == 2){
+			b2 = (GameObject)Instantiate (lvl2, new Vector3(transform.position.x - 0.15f, transform.position.y + 0.15f, 0), Quaternion.identity);
+		} else {
+			Destroy (b2.gameObject);
+			b3 = (GameObject)Instantiate (lvl3, new Vector3(transform.position.x - 0.15f, transform.position.y + 0.15f, 0), Quaternion.identity);
+		}
 	}
 }
