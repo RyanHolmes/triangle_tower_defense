@@ -46,7 +46,7 @@ public class main : MonoBehaviour {
 		playerHealth = 20;
 		gameOver = false;
 
-		wave0 = new Vector3[] { new Vector3(3, 3.5f, 100), new Vector3(3, 3.5f, 100) };
+		wave0 = new Vector3[] { new Vector3(3, 3.5f, 50), new Vector3(3, 3.5f, 50) };
 		wave1 = new Vector3[] { new Vector3(2, 1.5f, 100), new Vector3(1, 2.5f, 100) };
 		waves.Add (wave0);
 		waves.Add (wave1);
