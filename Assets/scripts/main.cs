@@ -8,6 +8,7 @@ public class main : MonoBehaviour {
 	public int playerHealth;
 	public string currentTower;
 	public bool bought = false;
+	public bool gameOver;
 
 	public Transform standard_button;
 	public Transform slow_button;
@@ -43,6 +44,7 @@ public class main : MonoBehaviour {
 		spawnRate = 1f;
 		playerCash = 100;
 		playerHealth = 20;
+		gameOver = false;
 
 		wave0 = new Vector3[] { new Vector3(3, 3.5f, 100), new Vector3(3, 3.5f, 100) };
 		wave1 = new Vector3[] { new Vector3(2, 1.5f, 100), new Vector3(1, 2.5f, 100) };
@@ -63,10 +65,10 @@ public class main : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () { 
-		if(currentEnemy >= waves[currentWave].Length){
+		if(currentEnemy >= waves[currentWave].Length && !gameOver){
 			return;
 		}
-		if((Time.time - currentTime) >= spawnRate){
+		if((Time.time - currentTime) >= spawnRate && !gameOver){
 			spawnEnemy(waves[currentWave][currentEnemy]);
 			currentTime = Time.time;
 			currentEnemy++;
@@ -120,11 +122,12 @@ public class main : MonoBehaviour {
 	}
 
 	public void nextWave(){
-		if(currentWave < waves.Count) {
-		currentEnemy = 0;
-		currentWave++;
-		currentTime = Time.time;
+		if(currentWave < waves.Count - 1) {
+			currentEnemy = 0;
+			currentWave++;
+			currentTime = Time.time;
 		} else {
+			gameOver = true;
 			return;
 		}
 	}
