@@ -7,8 +7,8 @@ public class sell : MonoBehaviour {
 
 	void OnMouseDown(){
 		Destroy(tower.GetComponent<tower> ().r.gameObject);
-		//TODO: add money to bank
-
+		float value = Camera.main.GetComponent<main>().upgrades[tower.GetComponent<tower>().type + (tower.GetComponent<tower>().level).ToString()][4];
+		Camera.main.GetComponent<main> ().playerCash += (int)value;
 		Destroy (tower.gameObject);
 		GameObject.FindGameObjectWithTag ("cancel").GetComponent<cancel>().hideButtons();
 	}
