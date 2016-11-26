@@ -11,16 +11,12 @@ public class enemy : MonoBehaviour {
 	public int[] waveCash = new int[] {10, 20, 30};
 	public GameObject healthBar;
 	public GameObject hb;
-	public Animation boom;
-	public AnimationClip clip;
+	public GameObject anim;
 
 	// Use this for initialization
 	void Start () {
 		hb = (GameObject)Instantiate (healthBar, new Vector3 (transform.position.x, transform.position.y - 0.55f, 0), Quaternion.identity);
 		hb.transform.parent = this.transform;
-
-//		boom = GetComponent<Animation>();
-//		boom.AddClip (boomClip, "boom");
 	}
 	
 	// Update is called once per frame
@@ -31,13 +27,7 @@ public class enemy : MonoBehaviour {
 		if (health <= 0) {
 			Destroy (this.gameObject);
 			Camera.main.GetComponent<main> ().playerCash += waveCash[Camera.main.GetComponent<main>().currentWave];
-//			Animation boom = GetComponent<Animation> ();
-			boom.AddClip (clip, "boom");
-//			boom["boom"].speed = 0.2f;
-//			boom.Play("boom", PlayMode.StopAll);
-//			boom.CrossFade("boom", 0.5f, PlayMode.StopAll);
-			boom.Play ("boom");
-//			boom.Play ();
+			GameObject boom = (GameObject)Instantiate (anim, new Vector3(transform.position.x, transform.position.y + 7.5f, 0f), Quaternion.identity);
 		}
 	}
 
