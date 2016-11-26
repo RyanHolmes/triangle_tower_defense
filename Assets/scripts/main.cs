@@ -61,6 +61,8 @@ public class main : MonoBehaviour {
 
 		setButtonCost ();
 		populateUpgrades ();
+
+		InvokeRepeating ("resetBoxes", 0f, 1f);
 	}
 	
 	// Update is called once per frame
@@ -162,5 +164,13 @@ public class main : MonoBehaviour {
 		upgrades["fast3"] = new float[5] { 75, 2.5f, 36, 0.3f, 66 };
 		//access
 		//string i = upgrades["standard1"][0];
+	}
+
+	void resetBoxes(){
+		GameObject[] towers = GameObject.FindGameObjectsWithTag ("tower");
+		foreach(GameObject t in towers){
+			t.GetComponent<BoxCollider2D> ().enabled = false;
+			t.GetComponent<BoxCollider2D> ().enabled = true;
+		}
 	}
 }
