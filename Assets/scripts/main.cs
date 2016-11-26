@@ -47,7 +47,7 @@ public class main : MonoBehaviour {
 		gameOver = false;
 
 		wave0 = new Vector3[] { new Vector3(3, 3.5f, 50), new Vector3(3, 3.5f, 50) };
-		wave1 = new Vector3[] { new Vector3(2, 1.5f, 100), new Vector3(1, 2.5f, 100) };
+		wave1 = new Vector3[] { new Vector3(2, 1.5f, 150), new Vector3(1, 2.5f, 100) };
 		waves.Add (wave0);
 		waves.Add (wave1);
 
@@ -136,11 +136,11 @@ public class main : MonoBehaviour {
 		GameObject[] btns = GameObject.FindGameObjectsWithTag ("tower_button");
 		foreach(GameObject b in btns){
 			if (b.name == "tower_standard") {
-				b.GetComponent<buyButton>().cost = 15;
-			} else if (b.name == "tower_slow") {
 				b.GetComponent<buyButton>().cost = 10;
+			} else if (b.name == "tower_slow") {
+				b.GetComponent<buyButton>().cost = 30;
 			} else {
-				b.GetComponent<buyButton>().cost = 20;
+				b.GetComponent<buyButton>().cost = 15;
 			}
 		}
 	}

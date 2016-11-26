@@ -24,7 +24,7 @@ public class upgrade : MonoBehaviour {
 			Destroy(tower.GetComponent<tower> ().r.gameObject);
 			GameObject.FindGameObjectWithTag ("cancel").GetComponent<cancel>().hideButtons();
 		} else {
-			//some indicator
+			GameObject.FindGameObjectWithTag ("cancel").GetComponent<cancel>().hideButtons();
 		}
 	}
 
