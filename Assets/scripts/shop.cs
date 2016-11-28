@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class shop : MonoBehaviour {
 
@@ -28,7 +29,7 @@ public class shop : MonoBehaviour {
 	}
 
 	public void menu(){
-		
+		SceneManager.LoadScene ("menu");
 	}
 
 	public void pause(){
