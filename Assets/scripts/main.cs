@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class main : MonoBehaviour {
+	public Text healthUI;
+	public Text cashUI;
+	public Text waveUI;
+
 	public int playerCash;
 	public int playerHealth;
 	public string currentTower;
@@ -72,6 +76,9 @@ public class main : MonoBehaviour {
 	// Update is called once per frame
 	void Update () { 
 		if (gameStart) {
+			healthUI.text = playerHealth.ToString ();
+			cashUI.text = "$" + playerCash.ToString ();
+			waveUI.text = (currentWave + 1).ToString () + "/10";
 			if (currentEnemy >= waves [currentWave].Length && !gameOver) {
 				return;
 			}
