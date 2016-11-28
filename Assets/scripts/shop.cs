@@ -2,6 +2,8 @@
 
 public class shop : MonoBehaviour {
 
+	public Canvas pauseCanvas;
+
 	public void buyTower() {
 		if(Camera.main.GetComponent<main>().playerCash > 0){
 			Camera.main.GetComponent<main> ().currentTower = "standard";
@@ -25,4 +27,17 @@ public class shop : MonoBehaviour {
 		Camera.main.GetComponent<main> ().nextWave ();
 	}
 
+	public void menu(){
+		
+	}
+
+	public void pause(){
+		Time.timeScale = 0;
+		pauseCanvas.gameObject.SetActive(true);
+	}
+
+	public void resume(){
+		Time.timeScale = 1;
+		pauseCanvas.gameObject.SetActive(false);
+	}
 }
