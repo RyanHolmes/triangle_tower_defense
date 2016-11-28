@@ -27,7 +27,7 @@ public class enemy : MonoBehaviour {
 		if (health <= 0) {
 			Destroy (this.gameObject);
 			Camera.main.GetComponent<main> ().playerCash += waveCash[Camera.main.GetComponent<main>().currentWave];
-			GameObject boom = (GameObject)Instantiate (anim, new Vector3(transform.position.x, transform.position.y + 7.5f, 0f), Quaternion.identity);
+			Instantiate (anim, new Vector3(transform.position.x, transform.position.y + 7.5f, 0f), Quaternion.identity);
 		}
 	}
 
