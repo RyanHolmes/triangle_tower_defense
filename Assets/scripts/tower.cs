@@ -91,10 +91,20 @@ public class tower : MonoBehaviour {
 
 	void OnMouseOver(){
 		transform.localScale = new Vector3 (1.05f, 1.05f, 1.05f);
-//		costUI = cost;
-		rangeUI.text = "Range: " + range.ToString();
-		damageUI.text = "Damage: " + damage.ToString ();
-		frUI.text = "Fire Rate: " + fireRate.ToString();
+		Dictionary<string, float[]> u = Camera.main.GetComponent<main> ().upgrades;
+		string l2 = type + (level + 1).ToString (); 
+		string l = type + level.ToString ();
+		if (level != 3) {
+			costUI.text = "Cost:" + " + $" + u[l2][0].ToString();
+			rangeUI.text = "Range:" + " + $" + (u[l2][1] - u[l][1]).ToString();
+			damageUI.text = "Damage:" + " + $" + (u[l2][2] - u[l][2]).ToString();
+			frUI.text = "Fire Rate:" + " + $" + (u[l][3] - u[l2][3]).ToString();
+		} else {
+			costUI.text = "Cost: N/A";
+			rangeUI.text = "Range: N/A";
+			damageUI.text = "Damage: N/A";
+			frUI.text = "Fire Rate: N/A";
+		}
 	}
 
 	void OnMouseExit(){
