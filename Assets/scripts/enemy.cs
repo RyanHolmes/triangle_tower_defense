@@ -17,7 +17,7 @@ public class enemy : MonoBehaviour {
 	void Start () {
 		hb = (GameObject)Instantiate (healthBar, new Vector3 (transform.position.x, transform.position.y - 0.55f, 0), Quaternion.identity);
 		hb.transform.parent = this.transform;
-		waveCash = new int[]{ 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
+		waveCash = new int[]{ 3, 4, 4, 5, 5, 6, 8, 9, 10, 100 };
 	}
 	
 	// Update is called once per frame
