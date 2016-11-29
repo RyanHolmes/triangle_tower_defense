@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
@@ -7,6 +8,9 @@ public class main : MonoBehaviour {
 	public Text healthUI;
 	public Text cashUI;
 	public Text waveUI;
+
+	public Canvas gameOverCanvas;
+	public Canvas victoryCanvas;
 
 	public int playerCash;
 	public int playerHealth;
@@ -56,14 +60,14 @@ public class main : MonoBehaviour {
 		currentTime = 0f;
 		spawnRates = new float[]{ 1f, 0.9f, 1.2f, 0.7f, 1f, 1f, 1.1f, 1f, 0.5f, 1f };
 		playerCash = 40;
-		playerHealth = 10;
+		playerHealth = 1;
 		gameOver = false;
 		gameStart = false;
 		currentWave = -1;
 		currentEnemy = 0;
 
 		//fast = 3 standard = 2, slow = 1
-		wave0 = new Vector3[] { new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50) };
+		wave0 = new Vector3[] { new Vector3(1, 4f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50) };
 		wave1 = new Vector3[] { new Vector3(1, 2f, 60), new Vector3(1, 2f, 60), new Vector3(1, 2f, 60), new Vector3(1, 2f, 60), new Vector3(1, 2f, 80), new Vector3(1, 2f, 80), new Vector3(1, 2f, 80) };
 		wave2 = new Vector3[] { new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 70), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 70), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 70) };
 		wave3 = new Vector3[] { new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200) };
@@ -72,7 +76,7 @@ public class main : MonoBehaviour {
 		wave6 = new Vector3[] { new Vector3(3, 4f, 200), new Vector3(2, 1f, 500), new Vector3(3, 4f, 200), new Vector3(2, 1f, 500), new Vector3(3, 4f, 200), new Vector3(2, 1f, 500), new Vector3(3, 4f, 200), new Vector3(2, 1f, 500), new Vector3(3, 4f, 250), new Vector3(2, 1f, 700) };
 		wave7 = new Vector3[] { new Vector3(1, 2f, 300), new Vector3(2, 1f, 700), new Vector3(3, 4f, 250), new Vector3(1, 2f, 350), new Vector3(2, 1f, 750), new Vector3(3, 4f, 300), new Vector3(1, 2f, 300), new Vector3(2, 1f, 700), new Vector3(3, 4f, 250), new Vector3(1, 2f, 350), new Vector3(2, 1f, 750), new Vector3(3, 4f, 300), new Vector3(1, 2f, 300), new Vector3(2, 1f, 700), new Vector3(3, 4f, 250) };
 		wave8 = new Vector3[] { new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1200) };
-		wave9 = new Vector3[] { new Vector3(4, 0.5f, 12000) };
+		wave9 = new Vector3[] { new Vector3(4, 0.5f, 11000) };
 		waves.Add (wave0);
 		waves.Add (wave1);
 		waves.Add (wave2);
@@ -101,6 +105,9 @@ public class main : MonoBehaviour {
 	// Update is called once per frame
 	void Update () { 
 		cashUI.text = "$" + playerCash.ToString ();
+		if(playerHealth <= 0){
+			gameIsOver ();
+		}
 		if (gameStart) {
 			healthUI.text = playerHealth.ToString ();
 			waveUI.text = (currentWave + 1).ToString () + "/10";
@@ -128,6 +135,7 @@ public class main : MonoBehaviour {
 			e.tag = "enemy";
 			e.GetComponent<enemy> ().speed = en.y;
 			e.GetComponent<enemy> ().health = en.z;
+			e.GetComponent<enemy> ().currentTarget = 1;
 			break;
 
 		case 2://slow
@@ -136,6 +144,7 @@ public class main : MonoBehaviour {
 			e.tag = "enemy";
 			e.GetComponent<enemy> ().speed = en.y;
 			e.GetComponent<enemy> ().health = en.z;
+			e.GetComponent<enemy> ().currentTarget = 1;
 			break;
 
 		case 3://fast
@@ -144,13 +153,15 @@ public class main : MonoBehaviour {
 			e.tag = "enemy";
 			e.GetComponent<enemy> ().speed = en.y;
 			e.GetComponent<enemy> ().health = en.z;
+			e.GetComponent<enemy> ().currentTarget = 1;
 			break;
-		case 4://fast
+		case 4://boss
 			e = (GameObject)Instantiate (boss, start.transform.position, Quaternion.identity);
 			e.name = "boss";
 			e.tag = "enemy";
 			e.GetComponent<enemy> ().speed = en.y;
 			e.GetComponent<enemy> ().health = en.z;
+			e.GetComponent<enemy> ().currentTarget = 1;
 			break;
 		}
 	}
@@ -220,5 +231,17 @@ public class main : MonoBehaviour {
 			t.GetComponent<BoxCollider2D> ().enabled = false;
 			t.GetComponent<BoxCollider2D> ().enabled = true;
 		}
+	}
+
+	void gameIsOver (){
+		gameOver = true;
+		gameOverCanvas.gameObject.SetActive (true);
+		Time.timeScale = 0;
+	}
+
+	public void menu(){
+		gameOverCanvas.gameObject.SetActive (false);
+		Time.timeScale = 1;
+		SceneManager.LoadScene ("menu");
 	}
 }
