@@ -37,6 +37,7 @@ public class enemy : MonoBehaviour {
 		Vector3 dir = markers [currentTarget] - markers [currentTarget - 1];
 		moveEnemy (dir);
 		if (health <= 0) {
+			GameObject.FindGameObjectWithTag ("sm").GetComponent<soundManager> ().boom ();
 			Destroy (this.gameObject);
 			Camera.main.GetComponent<main> ().playerCash += waveCash[Camera.main.GetComponent<main>().currentWave];
 			Instantiate (anim, new Vector3(transform.position.x, transform.position.y + 7.5f, 0f), Quaternion.identity);
@@ -50,6 +51,7 @@ public class enemy : MonoBehaviour {
 
 	void moveEnemy(Vector3 dir){
 		if (!(currentTarget < markers.Count - 1)) {
+			GameObject.FindGameObjectWithTag ("sm").GetComponent<soundManager> ().screamer ();
 			Destroy (this.gameObject);
 			if (isBoss) {
 				Camera.main.GetComponent<main> ().playerHealth -= 4;

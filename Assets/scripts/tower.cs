@@ -67,6 +67,7 @@ public class tower : MonoBehaviour {
 		b.GetComponent<Rigidbody2D> ().AddForce (dir.normalized * 2000f);
 		b.tag = "bullet";
 		b.GetComponent<bullet> ().damage = damage;
+		GetComponent<AudioSource> ().Play ();
 	}
 
 	void OnMouseDown(){

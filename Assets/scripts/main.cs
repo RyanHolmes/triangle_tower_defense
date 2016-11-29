@@ -102,6 +102,7 @@ public class main : MonoBehaviour {
 
 		setButtonCost ();
 		populateUpgrades ();
+		this.GetComponent<AudioSource> ().Play ();
 
 		InvokeRepeating ("resetBoxes", 0f, 1f);
 	}
