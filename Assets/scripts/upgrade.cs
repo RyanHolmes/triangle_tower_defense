@@ -7,7 +7,12 @@ public class upgrade : MonoBehaviour {
 
 	void Update(){
 		if (tower != null) {
-			float costToUpgrade = Camera.main.GetComponent<main> ().upgrades [tower.GetComponent<tower> ().type + (tower.GetComponent<tower> ().level + 1).ToString ()] [0];
+			float costToUpgrade;
+			if(tower.GetComponent<tower>().level == 3){
+				costToUpgrade = Mathf.Infinity;
+			} else {
+				costToUpgrade = Camera.main.GetComponent<main> ().upgrades [tower.GetComponent<tower> ().type + (tower.GetComponent<tower> ().level + 1).ToString ()] [0];
+			}
 			if (costToUpgrade > Camera.main.GetComponent<main> ().playerCash) {
 				this.GetComponent<Renderer> ().material.color = Color.red;
 			} else {
@@ -17,13 +22,19 @@ public class upgrade : MonoBehaviour {
 	}
 
 	void OnMouseDown(){
-		float costToUpgrade = Camera.main.GetComponent<main>().upgrades[tower.GetComponent<tower>().type + (tower.GetComponent<tower>().level + 1).ToString()][0];
+		float costToUpgrade;
+		if(tower.GetComponent<tower>().level == 3){
+			costToUpgrade = Mathf.Infinity;
+		} else {
+			costToUpgrade = Camera.main.GetComponent<main> ().upgrades [tower.GetComponent<tower> ().type + (tower.GetComponent<tower> ().level + 1).ToString ()] [0];
+		}		
 		if( costToUpgrade <= Camera.main.GetComponent<main>().playerCash){
 			tower.GetComponent<tower>().upgrade();
 			Camera.main.GetComponent<main> ().playerCash -= (int)costToUpgrade;
 			Destroy(tower.GetComponent<tower> ().r.gameObject);
 			GameObject.FindGameObjectWithTag ("cancel").GetComponent<cancel>().hideButtons();
 		} else {
+			Destroy(tower.GetComponent<tower> ().r.gameObject);
 			GameObject.FindGameObjectWithTag ("cancel").GetComponent<cancel>().hideButtons();
 		}
 	}
