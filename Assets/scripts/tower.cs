@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 
 public class tower : MonoBehaviour {
 
@@ -10,6 +11,11 @@ public class tower : MonoBehaviour {
 	public GameObject lvl3;
 	public GameObject b2;
 	public GameObject b3;
+
+	public Text costUI;
+	public Text rangeUI;
+	public Text damageUI;
+	public Text frUI;
 
 	public string type;
 	public int level;
@@ -25,6 +31,10 @@ public class tower : MonoBehaviour {
 	void Start () {
 		level = 1;
 		InvokeRepeating ("UpdateTarget", 0f, fireRate);
+		costUI = GameObject.FindGameObjectWithTag ("cost").GetComponent<Text>();
+		rangeUI = GameObject.FindGameObjectWithTag ("rangeui").GetComponent<Text>();
+		damageUI = GameObject.FindGameObjectWithTag ("damage").GetComponent<Text>();
+		frUI = GameObject.FindGameObjectWithTag ("fireRate").GetComponent<Text>();
 	}
 
 	void UpdateTarget(){
@@ -81,6 +91,10 @@ public class tower : MonoBehaviour {
 
 	void OnMouseOver(){
 		transform.localScale = new Vector3 (1.05f, 1.05f, 1.05f);
+//		costUI = cost;
+		rangeUI.text = "Range: " + range.ToString();
+		damageUI.text = "Damage: " + damage.ToString ();
+		frUI.text = "Fire Rate: " + fireRate.ToString();
 	}
 
 	void OnMouseExit(){
