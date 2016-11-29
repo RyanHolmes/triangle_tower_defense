@@ -9,8 +9,11 @@ public class main : MonoBehaviour {
 	public Text cashUI;
 	public Text waveUI;
 
+	public float endTimer;
+	public bool isSet;
+
 	public Canvas gameOverCanvas;
-	public Canvas victoryCanvas;
+	public Canvas winnerCanvas;
 
 	public int playerCash;
 	public int playerHealth;
@@ -60,11 +63,12 @@ public class main : MonoBehaviour {
 		currentTime = 0f;
 		spawnRates = new float[]{ 1f, 0.9f, 1.2f, 0.7f, 1f, 1f, 1.1f, 1f, 0.5f, 1f };
 		playerCash = 40;
-		playerHealth = 1;
+		playerHealth = 10;
 		gameOver = false;
 		gameStart = false;
 		currentWave = -1;
 		currentEnemy = 0;
+		isSet = false;
 
 		//fast = 3 standard = 2, slow = 1
 		wave0 = new Vector3[] { new Vector3(1, 4f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50) };
@@ -105,11 +109,19 @@ public class main : MonoBehaviour {
 	// Update is called once per frame
 	void Update () { 
 		cashUI.text = "$" + playerCash.ToString ();
+		healthUI.text = playerHealth.ToString ();
 		if(playerHealth <= 0){
 			gameIsOver ();
 		}
+		if (currentWave == 9 && !isSet) {
+			endTimer = Time.time;
+			isSet = true;
+		}
+		if(currentWave == 9 && GameObject.FindGameObjectWithTag("boss") == null && GameObject.FindGameObjectsWithTag("enemy").Length <= 0 && (Time.time - endTimer) >= 2f && playerHealth >= 1){
+			winnerCanvas.gameObject.SetActive (true);
+			Time.timeScale = 0;
+		}
 		if (gameStart) {
-			healthUI.text = playerHealth.ToString ();
 			waveUI.text = (currentWave + 1).ToString () + "/10";
 			if (currentEnemy >= waves [currentWave].Length && !gameOver) {
 				return;

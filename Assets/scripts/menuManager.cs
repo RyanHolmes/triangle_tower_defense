@@ -9,6 +9,6 @@ public class menuManager : MonoBehaviour {
 	}
 
 	public void quit(){
-	
+		Application.Quit();
 	}
 }
