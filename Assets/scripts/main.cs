@@ -27,7 +27,7 @@ public class main : MonoBehaviour {
 	public GameObject start;
 	public bool gameStart;
 
-	public GameObject enemy1;
+	public GameObject boss;
 	public GameObject enemy_standard;//1
 	public GameObject enemy_slow;//2
 	public GameObject enemy_fast;//3
@@ -36,9 +36,13 @@ public class main : MonoBehaviour {
 	public List<Vector3[]> waves = new List<Vector3[]>();
 	public Vector3[] wave0;
 	public Vector3[] wave1;
+	public Vector3[] wave2;
+	public Vector3[] wave3;
+	public Vector3[] wave4;
+	public Vector3[] wave5;
 	public int currentWave;
 	public int currentEnemy;
-	public float spawnRate;
+	public float[] spawnRates;
 	public float currentTime;
 	public Dictionary<string, float[]> upgrades = new Dictionary<string, float[]>();
 
@@ -46,18 +50,27 @@ public class main : MonoBehaviour {
 	void Start () {
 		populateMarks ();
 		currentTime = 0f;
-		spawnRate = 1f;
-		playerCash = 100;
+		spawnRates = new float[]{ 1f, 0.9f, 1.2f};
+		playerCash = 40;
 		playerHealth = 20;
 		gameOver = false;
 		gameStart = false;
 		currentWave = -1;
 		currentEnemy = 0;
 
-		wave0 = new Vector3[] { new Vector3(3, 3.5f, 50), new Vector3(3, 3.5f, 50) };
-		wave1 = new Vector3[] { new Vector3(2, 1.5f, 150), new Vector3(1, 2.5f, 100) };
+		//fast = 3 standard = 2, slow = 1
+		wave0 = new Vector3[] { new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50) };
+		wave1 = new Vector3[] { new Vector3(1, 2f, 60), new Vector3(1, 2f, 60), new Vector3(1, 2f, 60), new Vector3(1, 2f, 60), new Vector3(1, 2f, 80), new Vector3(1, 2f, 80), new Vector3(1, 2f, 80) };
+		wave2 = new Vector3[] { new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60) };
+//		wave3 = new Vector3[] { };
+//		wave4 = new Vector3[] { };
+//		wave5 = new Vector3[] { };
 		waves.Add (wave0);
 		waves.Add (wave1);
+		waves.Add (wave2);
+		waves.Add (wave3);
+		waves.Add (wave4);
+		waves.Add (wave5);
 
 		//ui
 		GameObject c = (GameObject)Instantiate (cancel, new Vector3(100, -100, 0), Quaternion.identity);
@@ -75,19 +88,17 @@ public class main : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () { 
+		cashUI.text = "$" + playerCash.ToString ();
 		if (gameStart) {
 			healthUI.text = playerHealth.ToString ();
-			cashUI.text = "$" + playerCash.ToString ();
 			waveUI.text = (currentWave + 1).ToString () + "/10";
 			if (currentEnemy >= waves [currentWave].Length && !gameOver) {
 				return;
 			}
-			if (gameStart) {
-				if ((Time.time - currentTime) >= spawnRate && !gameOver) {
-					spawnEnemy (waves [currentWave] [currentEnemy]);
-					currentTime = Time.time;
-					currentEnemy++;
-				}
+			if ((Time.time - currentTime) >= spawnRates[currentWave] && !gameOver) {
+				spawnEnemy (waves [currentWave] [currentEnemy]);
+				currentTime = Time.time;
+				currentEnemy++;
 			}
 		}
 	}
@@ -167,11 +178,11 @@ public class main : MonoBehaviour {
 		//tower.type + tower.level
 		//cost, range, damage, speed, value(60%)
 		upgrades["standard1"] = new float[5] { 10, 2.5f, 15, 1, 6 };
-		upgrades["standard2"] = new float[5] { 10, 2.75f, 25, 0.8f, 12 };
-		upgrades["standard3"] = new float[5] { 50, 3, 40, 0.6f, 42 };
+		upgrades["standard2"] = new float[5] { 12, 2.75f, 24, 0.9f, 12 };
+		upgrades["standard3"] = new float[5] { 50, 3, 45, 0.7f, 42 };
 
 		upgrades["slow1"] = new float[5] { 30, 3, 40, 3, 18 };
-		upgrades["slow2"] = new float[5] { 30, 3.5f, 70, 3, 36 };
+		upgrades["slow2"] = new float[5] { 35, 3.5f, 70, 3, 36 };
 		upgrades["slow3"] = new float[5] { 100, 4.5f, 450, 2.5f, 96 };
 
 		upgrades["fast1"] = new float[5] { 15, 2, 5, 0.5f, 9 };

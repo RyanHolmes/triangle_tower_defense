@@ -98,7 +98,7 @@ public class tower : MonoBehaviour {
 			costUI.text = "Cost:" + " + $" + u[l2][0].ToString();
 			rangeUI.text = "Range: " + u[l][1] + " + " + (u[l2][1] - u[l][1]).ToString();
 			damageUI.text = "Damage: " + u[l][2] + " + " + (u[l2][2] - u[l][2]).ToString();
-			frUI.text = "Fire Rate: " + u[l][3] + " + " + (u[l][3] - u[l2][3]).ToString();
+			frUI.text = "Fire Rate: " + u[l][3] + " - " + (u[l][3] - u[l2][3]).ToString();
 		} else {
 			costUI.text = "Cost: " + "N/A";
 			rangeUI.text = "Range: " + u[l][1].ToString();

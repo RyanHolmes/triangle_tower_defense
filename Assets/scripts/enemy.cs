@@ -8,7 +8,7 @@ public class enemy : MonoBehaviour {
 	public int currentTarget = 1;
 	public float speed;
 	public float health;
-	public int[] waveCash = new int[] {3, 5, 7};
+	public int[] waveCash;
 	public GameObject healthBar;
 	public GameObject hb;
 	public GameObject anim;
@@ -17,6 +17,7 @@ public class enemy : MonoBehaviour {
 	void Start () {
 		hb = (GameObject)Instantiate (healthBar, new Vector3 (transform.position.x, transform.position.y - 0.55f, 0), Quaternion.identity);
 		hb.transform.parent = this.transform;
+		waveCash = new int[]{ 3, 3, 4, 4, 5, 5, 6, 6, 7, 7 };
 	}
 	
 	// Update is called once per frame
@@ -37,7 +38,7 @@ public class enemy : MonoBehaviour {
 			Camera.main.GetComponent<main> ().playerHealth -= 1;
 			return;
 		}
-		if (Vector3.Distance (transform.position, markers [currentTarget]) >= 0.15f) {
+		if (Vector3.Distance (transform.position, markers [currentTarget]) >= 0.2f) {
 			transform.Translate ((dir.normalized * speed) * Time.deltaTime, Space.World);
 		} else {
 			currentTarget += 1;
