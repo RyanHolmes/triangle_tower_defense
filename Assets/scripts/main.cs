@@ -72,7 +72,7 @@ public class main : MonoBehaviour {
 		wave6 = new Vector3[] { new Vector3(3, 4f, 200), new Vector3(2, 1f, 500), new Vector3(3, 4f, 200), new Vector3(2, 1f, 500), new Vector3(3, 4f, 200), new Vector3(2, 1f, 500), new Vector3(3, 4f, 200), new Vector3(2, 1f, 500), new Vector3(3, 4f, 250), new Vector3(2, 1f, 700) };
 		wave7 = new Vector3[] { new Vector3(1, 2f, 300), new Vector3(2, 1f, 700), new Vector3(3, 4f, 250), new Vector3(1, 2f, 350), new Vector3(2, 1f, 750), new Vector3(3, 4f, 300), new Vector3(1, 2f, 300), new Vector3(2, 1f, 700), new Vector3(3, 4f, 250), new Vector3(1, 2f, 350), new Vector3(2, 1f, 750), new Vector3(3, 4f, 300), new Vector3(1, 2f, 300), new Vector3(2, 1f, 700), new Vector3(3, 4f, 250) };
 		wave8 = new Vector3[] { new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1000), new Vector3(2, 1f, 1200) };
-		wave9 = new Vector3[] { new Vector3(4, 0.5f, 5000) };
+		wave9 = new Vector3[] { new Vector3(4, 0.5f, 12000) };
 		waves.Add (wave0);
 		waves.Add (wave1);
 		waves.Add (wave2);
@@ -111,6 +111,9 @@ public class main : MonoBehaviour {
 				spawnEnemy (waves [currentWave] [currentEnemy]);
 				currentTime = Time.time;
 				currentEnemy++;
+			}
+			if(currentWave == 9){
+				GameObject.FindGameObjectWithTag ("next").GetComponent<Button> ().interactable = false;
 			}
 		}
 	}

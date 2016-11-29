@@ -26,15 +26,17 @@ public class tower : MonoBehaviour {
 	public float fireRate;
 	public GameObject bullet;
 	private GameObject target = null;
+	public float currentTime;
 
 	// Use this for initialization
 	void Start () {
 		level = 1;
-		InvokeRepeating ("UpdateTarget", 0f, fireRate);
+		InvokeRepeating ("UpdateTarget", 0f, 0.1f);
 		costUI = GameObject.FindGameObjectWithTag ("cost").GetComponent<Text>();
 		rangeUI = GameObject.FindGameObjectWithTag ("rangeui").GetComponent<Text>();
 		damageUI = GameObject.FindGameObjectWithTag ("damage").GetComponent<Text>();
 		frUI = GameObject.FindGameObjectWithTag ("fireRate").GetComponent<Text>();
+		currentTime = Time.time;
 	}
 
 	void UpdateTarget(){
@@ -46,8 +48,11 @@ public class tower : MonoBehaviour {
 				target = enemies [i];
 			} 
 		}
-		if(target != null && Vector3.Distance(transform.position, target.transform.position) < range){
-			shoot (target);
+		if(target != null && Vector3.Distance(transform.position, target.transform.position) <= range){
+			if(Time.time - currentTime >= fireRate){
+				shoot (target);
+				currentTime = Time.time;
+			}
 		}
 	}
 

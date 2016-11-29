@@ -9,15 +9,25 @@ public class enemy : MonoBehaviour {
 	public float speed;
 	public float health;
 	public int[] waveCash;
+	public bool isBoss;
 	public GameObject healthBar;
 	public GameObject hb;
 	public GameObject anim;
+
+	public GameObject slow;
+	public GameObject std;
+	public GameObject fast;
 
 	// Use this for initialization
 	void Start () {
 		hb = (GameObject)Instantiate (healthBar, new Vector3 (transform.position.x, transform.position.y - 0.55f, 0), Quaternion.identity);
 		hb.transform.parent = this.transform;
 		waveCash = new int[]{ 3, 4, 4, 5, 5, 6, 8, 9, 10, 100 };
+		if (this.tag == "boss") {
+			isBoss = true;
+		} else {
+			isBoss = false;		
+		}
 	}
 	
 	// Update is called once per frame
@@ -29,6 +39,9 @@ public class enemy : MonoBehaviour {
 			Destroy (this.gameObject);
 			Camera.main.GetComponent<main> ().playerCash += waveCash[Camera.main.GetComponent<main>().currentWave];
 			Instantiate (anim, new Vector3(transform.position.x, transform.position.y + 7.5f, 0f), Quaternion.identity);
+			if(isBoss){
+				deathSpawn ();
+			}
 		}
 	}
 
@@ -49,6 +62,10 @@ public class enemy : MonoBehaviour {
 		if(c.gameObject.tag == "bullet"){
 			health -= c.gameObject.GetComponent<bullet> ().damage;
 		}
+	}
+
+	void deathSpawn () {
+		//TODO: spawn enemies after death using boss' currenTarget
 	}
 
 }
