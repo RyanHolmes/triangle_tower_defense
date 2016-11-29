@@ -50,7 +50,7 @@ public class main : MonoBehaviour {
 	void Start () {
 		populateMarks ();
 		currentTime = 0f;
-		spawnRates = new float[]{ 1f, 0.9f, 1.2f};
+		spawnRates = new float[]{ 1f, 0.9f, 1.2f, 0.7f };
 		playerCash = 40;
 		playerHealth = 20;
 		gameOver = false;
@@ -61,10 +61,10 @@ public class main : MonoBehaviour {
 		//fast = 3 standard = 2, slow = 1
 		wave0 = new Vector3[] { new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50), new Vector3(1, 2f, 50) };
 		wave1 = new Vector3[] { new Vector3(1, 2f, 60), new Vector3(1, 2f, 60), new Vector3(1, 2f, 60), new Vector3(1, 2f, 60), new Vector3(1, 2f, 80), new Vector3(1, 2f, 80), new Vector3(1, 2f, 80) };
-		wave2 = new Vector3[] { new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60) };
-//		wave3 = new Vector3[] { };
-//		wave4 = new Vector3[] { };
-//		wave5 = new Vector3[] { };
+		wave2 = new Vector3[] { new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 70), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 70), new Vector3 (3, 4f, 60), new Vector3 (3, 4f, 50), new Vector3 (3, 4f, 70) };
+		wave3 = new Vector3[] { new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200), new Vector3 (2, 1f, 200) };
+		wave4 = new Vector3[] { };
+		wave5 = new Vector3[] { };
 		waves.Add (wave0);
 		waves.Add (wave1);
 		waves.Add (wave2);
@@ -187,7 +187,7 @@ public class main : MonoBehaviour {
 
 		upgrades["fast1"] = new float[5] { 15, 2, 5, 0.5f, 9 };
 		upgrades["fast2"] = new float[5] { 20, 2, 12, 0.4f, 21 };
-		upgrades["fast3"] = new float[5] { 75, 2.5f, 36, 0.3f, 66 };
+		upgrades["fast3"] = new float[5] { 75, 2.5f, 32, 2.5f, 66 };
 		//access
 		//string i = upgrades["standard1"][0];
 	}
